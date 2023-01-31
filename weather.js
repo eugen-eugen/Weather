@@ -2,18 +2,18 @@ function bestWeather() {
     bW = temperatures[0]
     for (let i = 1; i < temperatures.length; i++) {
         const w = temperatures[i];
-        if ( w.Temperature > bW.Temperature ){
+        if ( w.Temperature < bW.Temperature ){
             bW = w;
         }
     }
     return bW;
 }
 
-function bestWeatherUnder (maxTemperature){
+function bestWeatherUeber (minTemperature){
     bWU = temperatures[0]
     for (let i = 1; i < temperatures.length; i++) {
         const w = temperatures[i];
-        if ( w.Temperature < maxTemperature && w.Temperature > bWU.Temperature ){
+        if ( w.Temperature > minTemperature && w.Temperature < bWU.Temperature ){
             bWU = w;
         }
     }
@@ -27,7 +27,7 @@ function topWeathers (maxTemperature) {
 
     topWeathers.push(w)
     for (let i = 0; i < 9; i++) {
-        w = bestWeatherUnder(w.Temperature)
+        w = bestWeatherUeber(w.Temperature)
         topWeathers.push(w)
     }
     return topWeathers;
